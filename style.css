@@ -1,0 +1,174 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.page-title {
+  text-align: center;
+  margin-top: 5rem;
+  font-size: 2rem;
+  color: #1e201e;
+}
+
+/* Flexbox container to lay out the sections */
+.main-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  gap: 30px;
+}
+
+/* Individual Containers */
+.form-container,
+.cart-container {
+  width: 48%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Container Styles */
+.add-to-cart-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-to-cart-container > div {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/*
+.edit-del-btn button {
+  margin-right: 10px;
+  background-color: #28a745;
+  transition: background-color 0.3s ease;
+}
+
+.edit-del-btn button:hover {
+  background-color: #218838;
+}
+
+#delete-btn {
+  background-color: #dc3545;
+}
+
+#delete-btn:hover {
+  background-color: #c82333;
+}
+
+.cart-items button {
+  background-color: #007bff;
+  margin-top: 10px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.cart-items button:hover {
+  background-color: #0056b3;
+} */
+
+#add-to-cart-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  background-color: #0d7c66;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+#add-to-cart-btn:hover {
+  background-color: #259c84;
+  transition: background-color 0.3s ease;
+}
+
+.cart-items h2 {
+  text-align: center;
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #1e201e;
+}
+
+.edit-del-btn-container {
+  margin: 20px 0;
+}
+
+#edit-btn {
+  background-color: #03346e;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#edit-btn:hover {
+  background-color: #195297;
+  transition: background-color 0.3s ease;
+}
+
+#delete-btn {
+  background-color: #b43f3f;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#delete-btn:hover {
+  background-color: #cc5a5a;
+  transition: background-color 0.3s ease;
+}
+
+#checkout-btn {
+  background-color: #b43f3f;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #0d7c66;
+}
+
+#checkout-btn:hover {
+  background-color: #259c84;
+  transition: background-color 0.3s ease;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+  appearance: none;
+}

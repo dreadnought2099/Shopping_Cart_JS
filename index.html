@@ -7,32 +7,36 @@
     <title>Shopee</title>
   </head>
   <body>
-    <h1>Shopping Cart</h1>
-    <div class="add-to-cart-container">
-      <div class="item-name-container">
-        <label for="item-name">Item</label>
-        <input type="text" id="item-name" name="item-name" />
+    <h1 class="page-title">Shopping Cart</h1>
+    <div class="main-wrapper">
+      <div class="form-container">
+        <form class="add-to-cart-container">
+          <div class="item-name-container">
+            <label for="item-name">Item</label>
+            <input type="text" id="item-name" name="item-name" required />
+          </div>
+          <div class="item-price-container">
+            <label for="item-price">Price</label>
+            <input type="number" id="item-price" name="item-price" required />
+          </div>
+          <div class="quantity-container">
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" name="quantity" required />
+          </div>
+          <button type="submit" id="add-to-cart-btn">Add to Cart</button>
+        </form>
       </div>
-      <div class="item-price-container">
-        <label for="item-price">Price</label>
-        <input type="number" id="item-price" name="item-price" />
+      <div class="cart-container">
+        <div class="cart-items">
+          <h2>Cart Items</h2>
+          <p id="items-summary"></p>
+          <div class="edit-del-btn-container">
+            <button type="button" id="edit-btn">Edit</button>
+            <button type="button" id="delete-btn">Delete</button>
+          </div>
+          <button type="button" id="checkout-btn">Checkout</button>
+        </div>
       </div>
-      <div class="quantity-container">
-        <label for="quantity">Quantity</label>
-        <input type="number" id="quantity" name="quantity" />
-      </div>
-      <button type="submit">Add to Cart</button>
-    </div>
-    <div class="cart-items-container"></div>
-    <h2>Cart Items</h2>
-    <div class="cart-items">
-      <input type="checkbox" />
-      <p id="items-summary"></p>
-      <div class="edit-del-btn">
-        <button type="submit">Edit</button>
-        <button type="submit">Delete</button>
-      </div>
-      <button type="submit">Checkout</button>
     </div>
   </body>
 </html>
