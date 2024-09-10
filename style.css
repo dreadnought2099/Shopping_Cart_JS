@@ -64,36 +64,6 @@ input[type="number"] {
   box-sizing: border-box;
 }
 
-/*
-.edit-del-btn button {
-  margin-right: 10px;
-  background-color: #28a745;
-  transition: background-color 0.3s ease;
-}
-
-.edit-del-btn button:hover {
-  background-color: #218838;
-}
-
-#delete-btn {
-  background-color: #dc3545;
-}
-
-#delete-btn:hover {
-  background-color: #c82333;
-}
-
-.cart-items button {
-  background-color: #007bff;
-  margin-top: 10px;
-  width: 100%;
-  transition: background-color 0.3s ease;
-}
-
-.cart-items button:hover {
-  background-color: #0056b3;
-} */
-
 #add-to-cart-btn {
   padding: 10px 15px;
   border: none;

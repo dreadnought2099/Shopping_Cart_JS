@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const checkoutBtn = document.getElementById("checkout-btn");
   let cart = [];
 
-  // Function to update the cart summary display
   function updateCartSummary() {
     if (cart.length === 0) {
       itemsSummary.innerHTML = "<p>No items in cart.</p>";
@@ -36,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     checkoutBtn.disabled = false;
   }
 
-  // Handle form submission to add items to cart
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const itemName = document.getElementById("item-name").value.trim();
@@ -52,12 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Handle Edit button click (for demonstration purposes, no real edit functionality yet)
-  editBtn.addEventListener("click", () => {
-    alert("Edit functionality is not implemented yet.");
-  });
+  // editBtn.addEventListener("click", () => {
+  //   alert("Edit functionality is not implemented yet.");
+  // });
 
-  // Handle Delete button click
   deleteBtn.addEventListener("click", () => {
     if (cart.length > 0) {
       cart = cart.filter(
@@ -67,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Handle Checkout button click
   checkoutBtn.addEventListener("click", () => {
     const selectedItems = Array.from(
       document.querySelectorAll('#items-summary input[type="checkbox"]:checked')
@@ -86,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
             .join("\n")
       );
 
-      // Remove checked items from cart
       cart = cart.filter(
         (_, index) =>
           !selectedItems.some(
