@@ -2,7 +2,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background-color: #f5f7f8;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,7 +12,7 @@ body {
 
 .page-title {
   text-align: center;
-  margin-top: 5rem;
+  margin-top: 2rem;
   font-size: 2rem;
   color: #1e201e;
 }
@@ -34,7 +34,7 @@ body {
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  background-color: #fff;
+  background-color: #e9efec;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -62,6 +62,12 @@ input[type="number"] {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  border-color: #0d7c66; /* Change border color when focused */
+  outline: none; /* Remove default browser outline */
 }
 
 #add-to-cart-btn {
@@ -153,7 +159,7 @@ input[type="number"] {
   margin: 0.5em 0;
 }
 
-select {
+/* select {
   width: 100%;
   padding: 0.5em;
   border: 1px solid #ccc;
@@ -170,7 +176,28 @@ select {
   margin-bottom: 0.5em;
   color: #555;
 }
+ */
 
+select {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  background-color: #fff;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+
+select:focus {
+  outline: none;
+  border-color: #0d7c66;
+}
 option {
   padding: 0.5em;
+}
+
+option:disabled {
+  color: #aaa;
 }
