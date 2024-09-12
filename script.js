@@ -1,5 +1,3 @@
-// script.js
-
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".add-to-cart-container");
   const itemsSummary = document.getElementById("items-summary");

@@ -17,7 +17,7 @@ body {
   color: #1e201e;
 }
 
-/* Flexbox container to lay out the sections */
+/* Flexbox container para ma-lay out ang section*/
 .main-wrapper {
   display: flex;
   justify-content: space-between;
@@ -27,8 +27,8 @@ body {
   gap: 30px;
 }
 
-/* Individual Containers */
-.form-container,
+/* TWo individual Containers */
+.add-to-cart-container,
 .cart-container {
   width: 48%;
   padding: 20px;
@@ -39,12 +39,12 @@ body {
 }
 
 /* Form Container Styles */
-.add-to-cart-container {
+.form-container {
   display: flex;
   flex-direction: column;
 }
 
-.add-to-cart-container > div {
+.form-container > div {
   margin-bottom: 15px;
 }
 
@@ -147,4 +147,30 @@ input[type="number"] {
   -moz-appearance: textfield;
   -webkit-appearance: none;
   appearance: none;
+}
+
+.select-container {
+  margin: 0.5em 0;
+}
+
+select {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  background-color: #fff;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+.select-container label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5em;
+  color: #555;
+}
+
+option {
+  padding: 0.5em;
 }
