@@ -17,7 +17,6 @@ body {
   color: #1e201e;
 }
 
-/* Flexbox container para ma-lay out ang section*/
 .main-wrapper {
   display: flex;
   justify-content: space-between;
@@ -27,7 +26,6 @@ body {
   gap: 30px;
 }
 
-/* TWo individual Containers */
 .add-to-cart-container,
 .cart-container {
   width: 48%;
@@ -56,7 +54,8 @@ label {
 }
 
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -65,9 +64,10 @@ input[type="number"] {
 }
 
 input[type="text"]:focus,
-input[type="number"]:focus {
-  border-color: #0d7c66; /* Change border color when focused */
-  outline: none; /* Remove default browser outline */
+input[type="number"]:focus,
+select:focus {
+  border-color: #0d7c66;
+  outline: none;
 }
 
 #add-to-cart-btn {
@@ -86,6 +86,13 @@ input[type="number"]:focus {
   transition: background-color 0.3s ease;
 }
 
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
 .cart-items h2 {
   text-align: center;
   margin-top: 0;
@@ -93,54 +100,96 @@ input[type="number"]:focus {
   color: #1e201e;
 }
 
+#items-summary {
+  flex-grow: 1;
+}
+
+/* Style for each cart item */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-item span {
+  flex: 1;
+  color: #333;
+  font-size: 1rem;
+}
+
+.cart-item .item-checkbox {
+  margin-right: 15px;
+}
+
 .edit-del-btn-container {
-  margin: 20px 0;
+  display: flex;
+  gap: 10px;
 }
 
-#edit-btn {
+.edit-btn,
+.delete-btn {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+.edit-btn {
   background-color: #03346e;
-  border: none;
   color: white;
-  border-radius: 4px;
-  padding: 10px 15px;
-  font-size: 16px;
-  cursor: pointer;
 }
 
-#edit-btn:hover {
+.edit-btn:hover {
   background-color: #195297;
-  transition: background-color 0.3s ease;
 }
 
-#delete-btn {
+.delete-btn {
   background-color: #b43f3f;
-  border: none;
   color: white;
-  border-radius: 4px;
-  padding: 10px 15px;
-  font-size: 16px;
-  cursor: pointer;
 }
 
-#delete-btn:hover {
+.delete-btn:hover {
   background-color: #cc5a5a;
-  transition: background-color 0.3s ease;
+}
+
+/* Checkout and Total Section */
+.checkout-summary {
+  margin-top: 15px;
+}
+
+.checkout-summary div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #333;
+  justify-content: right;
 }
 
 #checkout-btn {
-  background-color: #b43f3f;
-  border: none;
-  color: white;
-  border-radius: 4px;
   padding: 10px 15px;
   font-size: 16px;
-  cursor: pointer;
+  color: white;
   background-color: #0d7c66;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  align-self: flex-end;
+  margin-top: auto;
 }
 
 #checkout-btn:hover {
   background-color: #259c84;
-  transition: background-color 0.3s ease;
+}
+
+.subtotal-display,
+.shipping-fee-display,
+.total-display {
+  font-weight: bold;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -153,51 +202,4 @@ input[type="number"] {
   -moz-appearance: textfield;
   -webkit-appearance: none;
   appearance: none;
-}
-
-.select-container {
-  margin: 0.5em 0;
-}
-
-/* select {
-  width: 100%;
-  padding: 0.5em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1em;
-  background-color: #fff;
-  cursor: pointer;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  outline: none;
-}
-.select-container label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 0.5em;
-  color: #555;
-}
- */
-
-select {
-  width: 100%;
-  padding: 0.5em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1em;
-  background-color: #fff;
-  cursor: pointer;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  outline: none;
-}
-
-select:focus {
-  outline: none;
-  border-color: #0d7c66;
-}
-option {
-  padding: 0.5em;
-}
-
-option:disabled {
-  color: #aaa;
 }

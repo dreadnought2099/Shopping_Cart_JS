@@ -1,93 +1,132 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector(".add-to-cart-container");
+  const addToCartForm = document.getElementById("add-to-cart-form");
   const itemsSummary = document.getElementById("items-summary");
-  const editBtn = document.getElementById("edit-btn");
-  const deleteBtn = document.getElementById("delete-btn");
-  const checkoutBtn = document.getElementById("checkout-btn");
-  let cart = [];
+  const subtotalDisplay = document.getElementById("subtotal-display");
+  const shippingFeeDisplay = document.getElementById("shipping-fee-display");
+  const totalDisplay = document.getElementById("total-display");
 
-  function updateCartSummary() {
-    if (cart.length === 0) {
-      itemsSummary.innerHTML = "<p>No items in cart.</p>";
-      editBtn.disabled = true;
-      deleteBtn.disabled = true;
-      checkoutBtn.disabled = true;
-      return;
-    }
+  let cartItems = [];
 
-    itemsSummary.innerHTML = cart
-      .map((item, index) => {
-        return `
-          <div>
-            <input type="checkbox" id="item-${index}" data-index="${index}" />
-            <label for="item-${index}">${item.name} - $${item.price.toFixed(
-          2
-        )} x ${item.quantity}</label>
-          </div>
-        `;
-      })
-      .join("");
+  // Shipping fee lookup
+  const shippingFees = {
+    Anda: 350,
+    Carmen: 150,
+    Sagbayan: 110,
+  };
 
-    editBtn.disabled = false;
-    deleteBtn.disabled = false;
-    checkoutBtn.disabled = false;
+  // Function to render cart items
+  function renderCartItems() {
+    itemsSummary.innerHTML = ""; // Clear the items summary
+    cartItems.forEach((item, index) => {
+      const itemRow = document.createElement("div");
+      itemRow.classList.add("cart-item");
+
+      // Checkbox
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.classList.add("item-checkbox");
+      checkbox.checked = item.checked;
+      checkbox.addEventListener("change", () => {
+        item.checked = checkbox.checked;
+        calculateTotals();
+      });
+
+      // Item details
+      const itemDetails = document.createElement("span");
+      itemDetails.textContent = `${item.name} - ₱${item.price} x ${item.quantity}`;
+
+      // Shipping info
+      const shippingDetails = document.createElement("span");
+      shippingDetails.textContent = `Shipping to: ${item.shippingDestination}`;
+
+      // Edit and Delete buttons
+      const editButton = document.createElement("button");
+      editButton.textContent = "Edit";
+      editButton.classList.add("edit-btn");
+      editButton.addEventListener("click", () => {
+        editCartItem(index);
+      });
+
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "Delete";
+      deleteButton.classList.add("delete-btn");
+      deleteButton.addEventListener("click", () => {
+        deleteCartItem(index);
+      });
+
+      // Append elements to itemRow
+      itemRow.appendChild(checkbox);
+      itemRow.appendChild(itemDetails);
+      itemRow.appendChild(shippingDetails);
+      itemRow.appendChild(editButton);
+      itemRow.appendChild(deleteButton);
+
+      // Add itemRow to items summary
+      itemsSummary.appendChild(itemRow);
+    });
   }
 
-  form.addEventListener("submit", (event) => {
+  // Function to add items to the cart
+  addToCartForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    const itemName = document.getElementById("item-name").value.trim();
+
+    const itemName = document.getElementById("item-name").value;
     const itemPrice = parseFloat(document.getElementById("item-price").value);
-    const itemQuantity = parseInt(document.getElementById("quantity").value);
+    const quantity = parseInt(document.getElementById("quantity").value);
+    const shippingDestination =
+      document.getElementById("shipping-options").value;
 
-    if (itemName && !isNaN(itemPrice) && !isNaN(itemQuantity)) {
-      cart.push({ name: itemName, price: itemPrice, quantity: itemQuantity });
-      form.reset();
-      updateCartSummary();
-    } else {
-      alert("Please enter valid item details.");
-    }
+    const newItem = {
+      name: itemName,
+      price: itemPrice,
+      quantity: quantity,
+      shippingDestination: shippingDestination,
+      shippingFee: shippingFees[shippingDestination],
+      checked: false,
+    };
+
+    cartItems.push(newItem);
+    renderCartItems();
+    calculateTotals();
+    addToCartForm.reset(); // Reset the form after adding
   });
 
-  // editBtn.addEventListener("click", () => {
-  //   alert("Edit functionality is not implemented yet.");
-  // });
+  // Function to delete a cart item
+  function deleteCartItem(index) {
+    cartItems.splice(index, 1); // Remove the item from the cart
+    renderCartItems();
+    calculateTotals();
+  }
 
-  deleteBtn.addEventListener("click", () => {
-    if (cart.length > 0) {
-      cart = cart.filter(
-        (_, index) => !document.getElementById(`item-${index}`).checked
-      );
-      updateCartSummary();
-    }
-  });
+  // Function to edit a cart item (simplified for now)
+  function editCartItem(index) {
+    const item = cartItems[index];
+    document.getElementById("item-name").value = item.name;
+    document.getElementById("item-price").value = item.price;
+    document.getElementById("quantity").value = item.quantity;
+    document.getElementById("shipping-options").value =
+      item.shippingDestination;
 
-  checkoutBtn.addEventListener("click", () => {
-    const selectedItems = Array.from(
-      document.querySelectorAll('#items-summary input[type="checkbox"]:checked')
-    );
+    // Remove the item so it can be re-added after editing
+    deleteCartItem(index);
+  }
 
-    if (selectedItems.length > 0) {
-      alert(
-        "Checked out items:\n" +
-          selectedItems
-            .map((checkbox) => {
-              const index = checkbox.dataset.index;
-              return `${cart[index].name} - $${cart[index].price.toFixed(
-                2
-              )} x ${cart[index].quantity}`;
-            })
-            .join("\n")
-      );
+  // Function to calculate subtotal, shipping fee, and total
+  function calculateTotals() {
+    let subtotal = 0;
+    let shippingFee = 0;
 
-      cart = cart.filter(
-        (_, index) =>
-          !selectedItems.some(
-            (checkbox) => checkbox.dataset.index === index.toString()
-          )
-      );
-      updateCartSummary();
-    } else {
-      alert("No items selected for checkout.");
-    }
-  });
+    cartItems.forEach((item) => {
+      if (item.checked) {
+        subtotal += item.price * item.quantity;
+        shippingFee += item.shippingFee;
+      }
+    });
+
+    const total = subtotal + shippingFee;
+
+    subtotalDisplay.textContent = `Subtotal: ₱${subtotal}`;
+    shippingFeeDisplay.textContent = `Shipping Fee: ₱${shippingFee}`;
+    totalDisplay.textContent = `Total: ₱${total}`;
+  }
 });

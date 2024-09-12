@@ -11,7 +11,7 @@
     <h1 class="page-title">Shopping Cart</h1>
     <div class="main-wrapper">
       <div class="add-to-cart-container">
-        <form class="form-container">
+        <form id="add-to-cart-form" class="form-container">
           <div class="item-name-container">
             <label for="item-name">Item</label>
             <input type="text" id="item-name" name="item-name" required />
@@ -26,20 +26,22 @@
           </div>
           <div class="select-container">
             <label for="shipping-options">Shipping To</label>
-            <select id="shipping-options" name="shipping-options">
-              <option value="" disabled selected>Select Shipping Option</option>
-              <option value="option1">Anda - ₱350 fee</option>
-              <option value="option2">Carmen - ₱150 fee</option>
-              <option value="option3">Sagbayan - ₱110 fee</option>
+            <select id="shipping-options" name="shipping-options" required>
+              <option value="" disabled selected>
+                Select Shipping Destination
+              </option>
+              <option value="Anda">Anda - ₱350 fee</option>
+              <option value="Carmen">Carmen - ₱150 fee</option>
+              <option value="Sagbayan">Sagbayan - ₱110 fee</option>
             </select>
           </div>
           <div class="payment-method-container">
             <label for="payment-methods">Payment Method</label>
-            <select id="payment-methods" name="payment-methods">
+            <select id="payment-methods" name="payment-methods" required>
               <option value="" disabled selected>Select Payment Method</option>
-              <option value="option1">Paypal</option>
-              <option value="option2">Paymaya / Maya</option>
-              <option value="option3">Gcash</option>
+              <option value="Paypal">Paypal</option>
+              <option value="Paymaya">Paymaya/Maya</option>
+              <option value="Gcash">Gcash</option>
             </select>
           </div>
           <button type="submit" id="add-to-cart-btn">Add to Cart</button>
@@ -49,10 +51,18 @@
         <div class="cart-items">
           <h2>Cart Items</h2>
           <div id="items-summary"></div>
-          <div class="edit-del-btn-container">
-            <button type="button" id="edit-btn">Edit</button>
-            <button type="button" id="delete-btn">Delete</button>
+
+          <!-- Checkout Summary Section -->
+          <div class="checkout-summary">
+            <div id="subtotal-display" class="subtotal-display">
+              Subtotal: ₱0
+            </div>
+            <div id="shipping-fee-display" class="shipping-fee-display">
+              Shipping Fee: ₱0
+            </div>
+            <div id="total-display" class="total-display">Total: ₱0</div>
           </div>
+
           <button type="button" id="checkout-btn">Checkout</button>
         </div>
       </div>
