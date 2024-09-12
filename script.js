@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const subtotalDisplay = document.getElementById("subtotal-display");
   const shippingFeeDisplay = document.getElementById("shipping-fee-display");
   const totalDisplay = document.getElementById("total-display");
+  const checkoutBtn = document.getElementById("checkout-btn");
 
   let cartItems = [];
 
@@ -129,4 +130,9 @@ document.addEventListener("DOMContentLoaded", () => {
     shippingFeeDisplay.textContent = `Shipping Fee: ₱${shippingFee}`;
     totalDisplay.textContent = `Total: ₱${total}`;
   }
+
+  // Add event listener to the checkout button
+  checkoutBtn.addEventListener("click", () => {
+    alert("Thank you for your purchase! Your order has been placed.");
+  });
 });

@@ -125,7 +125,7 @@ select:focus {
 
 .edit-del-btn-container {
   display: flex;
-  gap: 10px;
+  gap: 15px;
 }
 
 .edit-btn,
@@ -140,6 +140,7 @@ select:focus {
 .edit-btn {
   background-color: #03346e;
   color: white;
+  margin-right: 10px;
 }
 
 .edit-btn:hover {
